@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "playdf",
+    "slug": "playdf",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "playdf"
+}
