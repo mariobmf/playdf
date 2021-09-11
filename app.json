@@ -1,11 +1,18 @@
 {
   "expo": {
-    "name": "playdf",
+    "name": "PlayDF",
     "slug": "playdf",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "backgroundColor": "#FFFFFF",
+      "resizeMode": "contain"
+    }
   },
   "name": "playdf"
 }
