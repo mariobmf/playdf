@@ -1,11 +1,12 @@
 import React from 'react';
-import { StatusBar, Text, View } from 'react-native';
+import { StatusBar } from 'react-native';
+import Player from './src/Pages/Player';
 
 const App: React.FC = () => (
-  <View>
+  <>
     <StatusBar barStyle="dark-content" backgroundColor="#FFF" />
-    <Text>Initial Commit</Text>
-  </View>
+    <Player />
+  </>
 );
 
 export default App;
