@@ -9,14 +9,22 @@ import {
   ButtonNext,
 } from './styles';
 
-const TrackPlayer: React.FC = () => {
+interface ITrackPlayerProps {
+  isPlaying: boolean;
+  handlePlayPause: () => void;
+}
+
+const TrackPlayer: React.FC<ITrackPlayerProps> = ({
+  isPlaying,
+  handlePlayPause,
+}: ITrackPlayerProps) => {
   return (
     <Container>
       <ButtonBack>
         <ControlIcon name="step-backward" />
       </ButtonBack>
-      <ButtonPlay>
-        <PlayIcon name="play" />
+      <ButtonPlay onPress={handlePlayPause}>
+        <PlayIcon name={isPlaying ? 'pause' : 'play'} />
       </ButtonPlay>
       <ButtonNext>
         <ControlIcon name="step-forward" />
