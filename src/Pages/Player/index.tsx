@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect, useMemo } from 'react';
 import { Audio, AVPlaybackStatus } from 'expo-av';
 
 import Header from '../../components/Header';
@@ -65,11 +65,32 @@ const Player: React.FC = () => {
     }
   }, [playbackStatus, playbackObject]);
 
+  // Duração da musica
+  const trackDuration = useMemo(() => {
+    if (playbackStatus && playbackStatus.isLoaded) {
+      if (playbackStatus.durationMillis) return playbackStatus.durationMillis;
+    }
+    return undefined;
+  }, [playbackStatus]);
+
+  // Posição Atual da Musica
+  const positionTrack = useMemo(() => {
+    if (playbackStatus && playbackStatus.isLoaded) {
+      return playbackStatus.positionMillis;
+    }
+    return 0;
+  }, [playbackStatus]);
+
   return (
     <Container>
       <Header />
       <PdfViewer />
-      <TrackPlayer handlePlayPause={handlePlayPause} isPlaying={isPlaying} />
+      <TrackPlayer
+        handlePlayPause={handlePlayPause}
+        isPlaying={isPlaying}
+        trackDuration={trackDuration}
+        positionTrack={positionTrack}
+      />
     </Container>
   );
 };
