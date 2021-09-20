@@ -19,7 +19,7 @@ const Player: React.FC = () => {
 
   const audio = {
     filename: 'My Awesome Audio',
-    uri: 'https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3',
+    uri: 'https://github.com/mariobmf/teste-music/raw/main/Bruno%20%26%20Marrone%20-%20Boate%20Azul%20-%20PLAYBACK%20AC%C3%9ASTICO_160k.mp3',
   };
 
   // Pause e da Play na musica

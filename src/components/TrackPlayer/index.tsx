@@ -44,7 +44,7 @@ const TrackPlayer: React.FC<ITrackPlayerProps> = ({
       const timeLeftMilliseconds = trackDuration - positionTrack;
 
       const minutes = Math.floor(timeLeftMilliseconds / 60000);
-      const seconds = Math.floor(timeLeftMilliseconds / 1000);
+      const seconds = Math.floor(timeLeftMilliseconds / 1000) % 60;
 
       return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(
         2,

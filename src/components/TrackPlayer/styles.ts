@@ -15,7 +15,7 @@ export const TimeContainer = styled.View`
   /* align-items: center; */
   justify-content: center;
 
-  margin: 8px 16px;
+  margin: 4px 16px;
 `;
 
 export const TimePosition = styled.Text`
@@ -44,7 +44,7 @@ export const ButtonBack = styled.TouchableOpacity``;
 
 export const ControlIcon = styled(FontAwesome5)`
   color: #fff;
-  font-size: 40px;
+  font-size: 30px;
 `;
 
 export const ButtonPlay = styled.TouchableOpacity`
@@ -53,16 +53,16 @@ export const ButtonPlay = styled.TouchableOpacity`
 
   margin: 0 40px;
 
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
 
-  border-radius: 40px;
+  border-radius: 30px;
   background: #b50c09;
 `;
 
 export const PlayIcon = styled(FontAwesome5)`
   color: #ffffff;
-  font-size: 40px;
+  font-size: 30px;
 `;
 
 export const ButtonNext = styled.TouchableOpacity``;
