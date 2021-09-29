@@ -10,6 +10,7 @@ public class BasePackageList {
         new expo.modules.application.ApplicationPackage(),
         new expo.modules.av.AVPackage(),
         new expo.modules.constants.ConstantsPackage(),
+        new expo.modules.documentpicker.DocumentPickerPackage(),
         new expo.modules.errorrecovery.ErrorRecoveryPackage(),
         new expo.modules.filesystem.FileSystemPackage(),
         new expo.modules.font.FontLoaderPackage(),

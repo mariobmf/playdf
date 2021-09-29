@@ -1,6 +1,7 @@
 import React, { useCallback, useState, useEffect, useMemo } from 'react';
 import { Audio, AVPlaybackStatus } from 'expo-av';
 
+import { useFile } from '../../context/FileContext';
 import Header from '../../components/Header';
 import PdfViewer from '../../components/PdfViewer';
 import TrackPlayer from '../../components/TrackPlayer';
@@ -8,6 +9,8 @@ import TrackPlayer from '../../components/TrackPlayer';
 import { Container } from './styles';
 
 const Player: React.FC = () => {
+  const { playbackFile, pdfFile, playbackName } = useFile();
+
   const [isPlaying, setIsPlaying] = useState(false);
   const [playbackObject, setPlaybackObject] = useState(() => {
     const playback = new Audio.Sound();
@@ -17,42 +20,42 @@ const Player: React.FC = () => {
     null,
   );
 
-  const audio = {
-    filename: 'My Awesome Audio',
-    uri: 'https://github.com/mariobmf/teste-music/raw/main/Bruno%20%26%20Marrone%20-%20Boate%20Azul%20-%20PLAYBACK%20AC%C3%9ASTICO_160k.mp3',
-  };
-
   // Pause e da Play na musica
   const handlePlayPause = useCallback(async () => {
-    // Se a Musica ainda não estiver sido carregada
-    if (playbackStatus === null) {
-      // Carrega o audio e da play
-      await playbackObject.loadAsync({ uri: audio.uri }, { shouldPlay: true });
+    if (playbackFile) {
+      // Se a Musica ainda não estiver sido carregada
+      if (playbackStatus === null) {
+        // Carrega o audio e da play
+        await playbackObject.loadAsync(
+          { uri: playbackFile.uri },
+          { shouldPlay: true },
+        );
 
-      await playbackObject.setProgressUpdateIntervalAsync(1000);
+        await playbackObject.setProgressUpdateIntervalAsync(1000);
 
-      playbackObject.setOnPlaybackStatusUpdate(status => {
-        setPlaybackStatus(status);
-      });
+        playbackObject.setOnPlaybackStatusUpdate(status => {
+          setPlaybackStatus(status);
+        });
 
-      setIsPlaying(true);
-    }
-
-    // Se o Audio já foi carregado, então
-    if (playbackStatus && playbackStatus.isLoaded) {
-      // Se o audio estiver tocando, então
-      if (playbackStatus.isPlaying) {
-        await playbackObject.pauseAsync();
-
-        setIsPlaying(false);
-      }
-      // Se o audio estiver pausado, então
-      if (!playbackStatus.isPlaying) {
-        await playbackObject.playAsync();
         setIsPlaying(true);
       }
+
+      // Se o Audio já foi carregado, então
+      if (playbackStatus && playbackStatus.isLoaded) {
+        // Se o audio estiver tocando, então
+        if (playbackStatus.isPlaying) {
+          await playbackObject.pauseAsync();
+
+          setIsPlaying(false);
+        }
+        // Se o audio estiver pausado, então
+        if (!playbackStatus.isPlaying) {
+          await playbackObject.playAsync();
+          setIsPlaying(true);
+        }
+      }
     }
-  }, [audio.uri, playbackObject, playbackStatus]);
+  }, [playbackObject, playbackStatus, playbackFile]);
 
   useEffect(() => {
     if (playbackStatus && playbackStatus.isLoaded) {
@@ -83,8 +86,8 @@ const Player: React.FC = () => {
 
   return (
     <Container>
-      <Header />
-      <PdfViewer />
+      <Header trackName={playbackName || ''} />
+      <PdfViewer pdfUri={pdfFile ? pdfFile.uri : ''} />
       <TrackPlayer
         handlePlayPause={handlePlayPause}
         isPlaying={isPlaying}

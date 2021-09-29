@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 
 import { Container, PageText, PdfView } from './styles';
 
-const PdfViewer: React.FC = () => {
+interface IPdfViewerProps {
+  pdfUri: string;
+}
+
+const PdfViewer: React.FC<IPdfViewerProps> = ({ pdfUri }: IPdfViewerProps) => {
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
 
-  const source = {
-    // uri: 'http://samples.leanpub.com/thereactnativebook-sample.pdf',
-    uri: 'https://studiosol-a.akamaihd.net/gcs/cifraclub/contrib/partituras/bruno-e-marrone-boate-azul.pdf',
-    cache: false,
-  };
+  const source = { uri: `file:///${pdfUri}` };
+
   return (
     <Container>
       <PageText>

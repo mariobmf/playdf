@@ -2,10 +2,14 @@ import React from 'react';
 
 import { Container, TrackName } from './styles';
 
-const Header: React.FC = () => {
+interface IHeaderProps {
+  trackName: string;
+}
+
+const Header: React.FC<IHeaderProps> = ({ trackName }: IHeaderProps) => {
   return (
     <Container>
-      <TrackName>Nome da Musica</TrackName>
+      <TrackName>{trackName}</TrackName>
     </Container>
   );
 };
