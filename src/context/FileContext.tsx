@@ -8,10 +8,8 @@ export interface FileProps {
 
 interface FileContextData {
   playbackName: string | undefined;
-  pdfFileUri: string | undefined;
-  playbackFileUri: string | undefined;
-  addPdfFileUri: (uri: string) => void;
-  addPlaybackFileUri: (uri: string) => void;
+  playbackUri: string | undefined;
+  addPlaybackUri: (uri: string) => void;
   addPlaybackName: (name: string) => void;
 }
 
@@ -19,15 +17,10 @@ const FileContext = createContext<FileContextData>({} as FileContextData);
 
 const FileProvider: React.FC = ({ children }) => {
   const [playbackName, setPlaybackName] = useState<string>();
-  const [pdfFileUri, setPdfFileUri] = useState<string>();
-  const [playbackFileUri, setPlaybackFileUri] = useState<string>();
+  const [playbackUri, setPlaybackUri] = useState<string>();
 
-  const addPdfFileUri = useCallback((uri: string) => {
-    setPdfFileUri(uri);
-  }, []);
-
-  const addPlaybackFileUri = useCallback((uri: string) => {
-    setPlaybackFileUri(uri);
+  const addPlaybackUri = useCallback((uri: string) => {
+    setPlaybackUri(uri);
   }, []);
 
   const addPlaybackName = useCallback((name: string) => {
@@ -37,11 +30,9 @@ const FileProvider: React.FC = ({ children }) => {
   return (
     <FileContext.Provider
       value={{
-        pdfFileUri,
-        playbackFileUri,
+        playbackUri,
+        addPlaybackUri,
         playbackName,
-        addPdfFileUri,
-        addPlaybackFileUri,
         addPlaybackName,
       }}
     >

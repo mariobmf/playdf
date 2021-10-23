@@ -1,11 +1,12 @@
 import styled from 'styled-components/native';
 import Slider from '@react-native-community/slider';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { shade } from 'polished';
 
 export const Container = styled.View`
   /* height: 100px; */
 
-  background: #f01a26;
+  background: ${props => props.theme.colors.primary};
   border-top-left-radius: 24px;
   border-top-right-radius: 24px;
 `;
@@ -20,7 +21,7 @@ export const TimeContainer = styled.View`
 
 export const TimePosition = styled.Text`
   font-size: 12px;
-  color: #fff;
+  color: ${props => props.theme.colors.light};
 `;
 
 export const TimeSlider = styled(Slider)`
@@ -29,7 +30,7 @@ export const TimeSlider = styled(Slider)`
 
 export const TimeLeft = styled.Text`
   font-size: 12px;
-  color: #fff;
+  color: ${props => props.theme.colors.light};
 `;
 
 export const PlayerControl = styled.View`
@@ -43,7 +44,7 @@ export const PlayerControl = styled.View`
 export const ButtonBack = styled.TouchableOpacity``;
 
 export const ControlIcon = styled(FontAwesome5)`
-  color: #fff;
+  color: ${props => props.theme.colors.light};
   font-size: 30px;
 `;
 
@@ -57,11 +58,11 @@ export const ButtonPlay = styled.TouchableOpacity`
   height: 60px;
 
   border-radius: 30px;
-  background: #b50c09;
+  background: ${props => shade(0.2, props.theme.colors.primary)};
 `;
 
 export const PlayIcon = styled(FontAwesome5)`
-  color: #ffffff;
+  color: ${props => props.theme.colors.light};
   font-size: 30px;
 `;
 

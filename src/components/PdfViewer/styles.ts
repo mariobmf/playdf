@@ -9,13 +9,13 @@ export const Container = styled.View`
 export const PageText = styled.Text`
   font-size: 16px;
   font-weight: bold;
-  color: #b50c09;
+  color: ${props => props.theme.colors.primary};
   text-align: center;
   margin-bottom: 8px;
 `;
 
 export const PdfView = styled(Pdf)`
   flex: 1;
-  background: #fff;
+  background: ${props => props.theme.colors.light};
   /* margin: 8px; */
 `;

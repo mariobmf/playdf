@@ -1,39 +1,29 @@
+import { shade } from 'polished';
 import styled from 'styled-components/native';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 export const Container = styled.View`
   flex: 1;
-  justify-content: center;
-  align-items: center;
-  margin: 8px;
+  margin-top: 8px;
 `;
-
-export const Button = styled.TouchableOpacity`
-  flex-direction: row;
+export const AlbumContainer = styled.TouchableOpacity`
   height: 40px;
-  width: 80%;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-
-  margin-top: 16px;
-
-  border-radius: 8px;
-
-  background: #f01a26;
+  padding: 0 8px;
+  margin: 4px 8px;
+  border-radius: 6px;
+  background-color: ${props => shade(0.09, props.theme.colors.light)};
 `;
 
-export const ButtonText = styled.Text`
-  margin-left: 8px;
-  font-size: 16px;
+export const AlbumName = styled.Text`
+  flex: 1;
+
+  color: ${props => props.theme.colors.textDark};
 `;
 
-export const PlaybackName = styled.Text`
-  font-size: 16px;
-  margin-top: 16px;
-`;
-
-export const InputPlaybackName = styled.TextInput`
-  width: 80%;
-  padding: 4px 8px;
-  border-radius: 8px;
-  border: 1px solid #f01a26;
+export const PlayIcon = styled(FontAwesome5)`
+  margin: 0 8px;
+  color: ${props => props.theme.colors.primary};
+  font-size: 15px;
 `;
