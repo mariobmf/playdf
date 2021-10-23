@@ -1,18 +1,17 @@
 import React, { createContext, useCallback, useState, useContext } from 'react';
-import { DocumentResult } from 'expo-document-picker';
 
-type FileProps = {
+export interface FileProps {
   name: string;
   size: number;
   uri: string;
-};
+}
 
 interface FileContextData {
   playbackName: string | undefined;
-  pdfFile: FileProps | undefined;
-  playbackFile: FileProps | undefined;
-  addPdfFile: (pdfFile: DocumentResult) => void;
-  addPlaybackFile: (pdfFile: DocumentResult) => void;
+  pdfFileUri: string | undefined;
+  playbackFileUri: string | undefined;
+  addPdfFileUri: (uri: string) => void;
+  addPlaybackFileUri: (uri: string) => void;
   addPlaybackName: (name: string) => void;
 }
 
@@ -20,27 +19,15 @@ const FileContext = createContext<FileContextData>({} as FileContextData);
 
 const FileProvider: React.FC = ({ children }) => {
   const [playbackName, setPlaybackName] = useState<string>();
-  const [pdfFile, setPdfFile] = useState<FileProps>();
-  const [playbackFile, setPlaybackFile] = useState<FileProps>();
+  const [pdfFileUri, setPdfFileUri] = useState<string>();
+  const [playbackFileUri, setPlaybackFileUri] = useState<string>();
 
-  const addPdfFile = useCallback((file: DocumentResult) => {
-    if (file.type === 'success') {
-      setPdfFile({
-        name: file.name,
-        size: file.size,
-        uri: file.uri,
-      });
-    }
+  const addPdfFileUri = useCallback((uri: string) => {
+    setPdfFileUri(uri);
   }, []);
 
-  const addPlaybackFile = useCallback((file: DocumentResult) => {
-    if (file.type === 'success') {
-      setPlaybackFile({
-        name: file.name,
-        size: file.size,
-        uri: file.uri,
-      });
-    }
+  const addPlaybackFileUri = useCallback((uri: string) => {
+    setPlaybackFileUri(uri);
   }, []);
 
   const addPlaybackName = useCallback((name: string) => {
@@ -50,11 +37,11 @@ const FileProvider: React.FC = ({ children }) => {
   return (
     <FileContext.Provider
       value={{
-        pdfFile,
-        playbackFile,
+        pdfFileUri,
+        playbackFileUri,
         playbackName,
-        addPdfFile,
-        addPlaybackFile,
+        addPdfFileUri,
+        addPlaybackFileUri,
         addPlaybackName,
       }}
     >

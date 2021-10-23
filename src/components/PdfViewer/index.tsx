@@ -10,7 +10,7 @@ const PdfViewer: React.FC<IPdfViewerProps> = ({ pdfUri }: IPdfViewerProps) => {
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
 
-  const source = { uri: `file:///${pdfUri}` };
+  const source = { uri: pdfUri };
 
   return (
     <Container>

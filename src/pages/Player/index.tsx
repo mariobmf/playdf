@@ -9,7 +9,7 @@ import TrackPlayer from '../../components/TrackPlayer';
 import { Container } from './styles';
 
 const Player: React.FC = () => {
-  const { playbackFile, pdfFile, playbackName } = useFile();
+  const { playbackFileUri, pdfFileUri, playbackName } = useFile();
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [playbackObject, setPlaybackObject] = useState(() => {
@@ -22,12 +22,12 @@ const Player: React.FC = () => {
 
   // Pause e da Play na musica
   const handlePlayPause = useCallback(async () => {
-    if (playbackFile) {
+    if (playbackFileUri) {
       // Se a Musica ainda não estiver sido carregada
       if (playbackStatus === null) {
         // Carrega o audio e da play
         await playbackObject.loadAsync(
-          { uri: playbackFile.uri },
+          { uri: playbackFileUri },
           { shouldPlay: true },
         );
 
@@ -55,7 +55,7 @@ const Player: React.FC = () => {
         }
       }
     }
-  }, [playbackObject, playbackStatus, playbackFile]);
+  }, [playbackObject, playbackStatus, playbackFileUri]);
 
   useEffect(() => {
     if (playbackStatus && playbackStatus.isLoaded) {
@@ -87,7 +87,7 @@ const Player: React.FC = () => {
   return (
     <Container>
       <Header trackName={playbackName || ''} />
-      <PdfViewer pdfUri={pdfFile ? pdfFile.uri : ''} />
+      <PdfViewer pdfUri={pdfFileUri || ''} />
       <TrackPlayer
         handlePlayPause={handlePlayPause}
         isPlaying={isPlaying}
